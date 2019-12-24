@@ -21,13 +21,24 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="offset-3 col-lg-6">
+                    <div id="error" class="d-none">
+                        <div class="alert alert-danger" role="alert">
+                            Invalid file type - please upload an application.properties file!
+                        </div>
+                    </div>
+                    <div id="success" class="d-none">
+                        <div class="alert alert-success" role="alert">
+                            Looks good!
+                        </div>
+                    </div>
+
                     <form method="POST" action="/document/upload" enctype="multipart/form-data">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" name="file" id="applicationFile"/>
                             <label class="custom-file-label" for="applicationFile">Select your application.properties
                                 file</label>
                         </div>
-                        <input type="submit" value="Submit" id="submitButton"/>
+                        <input disabled="disabled" type="submit" value="Submit" id="submitButton"/>
                     </form>
                 </div>
             </div>
@@ -41,7 +52,17 @@
     // Add the following code if you want the name of the file appear on select
     $(".custom-file-input").on("change", function () {
         var fileName = $(this).val().split("\\").pop();
-        console.log(fileName);
+
+        if (fileName.includes(".properties")){
+            $("#error").addClass("d-none");
+            $("#success").removeClass("d-none");
+            $("#submitButton").prop('disabled', false);
+        } else {
+            $("#error").removeClass("d-none");
+            $("#success").addClass("d-none");
+            $("#submitButton").prop('disabled', true);
+        }
+
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 </script>
