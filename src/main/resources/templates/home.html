@@ -5,13 +5,44 @@
     <title>Super Cool App</title>
     <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        #submitButton {
+            margin-top: 1%;
+        }
+    </style>
+
 </head>
 <body class="text-center">
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
     <main role="main" class="inner cover">
         <h1>Property Updater</h1>
         <h2>Utility for updating application.properties files to UNIX style identifier</h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="offset-3 col-lg-6">
+                    <form method="POST" action="/document/upload" enctype="multipart/form-data">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="file" id="applicationFile"/>
+                            <label class="custom-file-label" for="applicationFile">Select your application.properties
+                                file</label>
+                        </div>
+                        <input type="submit" value="Submit" id="submitButton"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </main>
 </div>
 </body>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        console.log(fileName);
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 </html>
