@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Super Cool App</title>
+    <link href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body class="text-center">
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <main role="main" class="inner cover">
+        <h1>Property Updater</h1>
+        <h2>Utility for updating application.properties files to UNIX style identifier</h2>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="offset-3 col-lg-6">
+                    <div class="alert alert-success" role="alert">
+                        Your file was successfully uploaded!
+                    </div>
+
+                    <h2>Contents:</h2>
+                    <p th:text="${fileContents}"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
