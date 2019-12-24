@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Super Cool App</title>
@@ -21,6 +21,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="offset-3 col-lg-6">
+
+                    <div th:if="${temp}" id="temp" class="alert alert-info">
+                        Temporary redirect until functionality implemented - everything worked!
+                    </div>
+
                     <div id="error" class="d-none">
                         <div class="alert alert-danger" role="alert">
                             Invalid file type - please upload an application.properties file!

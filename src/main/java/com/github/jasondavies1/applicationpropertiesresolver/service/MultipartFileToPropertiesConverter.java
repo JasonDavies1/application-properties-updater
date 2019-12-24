@@ -20,6 +20,7 @@ public class MultipartFileToPropertiesConverter implements Converter<MultipartFi
             final String fileContents = new String(multipartFile.getBytes());
             final String[] lines = fileContents.split("\n");
             return new Properties(Stream.of(lines)
+                    .filter(s -> !s.isBlank())
                     .map(removeCarriageReturn())
                     .map(toProperty())
                     .collect(Collectors.toList()));
