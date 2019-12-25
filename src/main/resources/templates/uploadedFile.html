@@ -28,7 +28,7 @@
                             </tr>
                             </thead>
                             <tr th:each="property, stat : *{properties}">
-                                <td th:text="*{properties[__${stat.index}__].key}"></td>
+                                <td><input type="text" th:field="*{properties[__${stat.index}__].key}"/></td>
                                 <td><input type="text" th:field="*{properties[__${stat.index}__].value}"/></td>
                                 <td><input type="checkbox" name="selected" th:checked="*{properties[__${stat.index}__].include}"/></td>
                             </tr>
