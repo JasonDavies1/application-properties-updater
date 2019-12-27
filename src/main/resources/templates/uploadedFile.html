@@ -30,7 +30,9 @@
                             <tr th:each="property, stat : *{properties}">
                                 <td><input type="text" th:field="*{properties[__${stat.index}__].key}"/></td>
                                 <td><input type="text" th:field="*{properties[__${stat.index}__].value}"/></td>
-                                <td><input type="checkbox" name="selected" th:checked="${property.include}"/></td>
+                                <td><input type="checkbox" name="include"
+                                           th:value="*{properties[__${stat.index}__].include}"
+                                           th:field="*{properties[__${stat.index}__].include}"/></td>
                             </tr>
                         </table>
                         <input type="submit" class="btn btn-success" value="Save and Download Changes">
