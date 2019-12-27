@@ -1,6 +1,7 @@
 package com.github.jasondavies1.applicationpropertiesresolver.configuration;
 
 import com.github.jasondavies1.applicationpropertiesresolver.domain.Properties;
+import com.github.jasondavies1.applicationpropertiesresolver.domain.Property;
 import com.github.jasondavies1.applicationpropertiesresolver.service.MultipartFileToPropertiesConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.FileSystemResource;
@@ -26,7 +27,7 @@ public class DocumentController {
     @PostMapping("upload")
     public String submit(
             @RequestParam("file") final MultipartFile file,
-            final ModelMap modelMap) throws IOException {
+            final ModelMap modelMap) {
         final Properties properties = propertiesConverter.convert(file);
         modelMap.addAttribute("propertyForm", properties);
         return "uploadedFile";
@@ -52,6 +53,7 @@ public class DocumentController {
 
     private String propertiesToString(final Properties properties) {
         return properties.getProperties().stream()
+                .filter(Property::isInclude)
                 .map(p -> {
                     final String formattedKey = p.getKey().toUpperCase()
                             .replaceAll("\\.", "_")
