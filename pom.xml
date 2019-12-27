@@ -57,6 +57,7 @@
     </dependencies>
 
     <build>
+        <finalName>application-properties-updater</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
